@@ -201,7 +201,9 @@ public class TestBPlusTree {
         String rr = "((8 (8 8)) (9 (9 9)))";
         l = String.format("(%s 6 %s)", ll, lr);
         r = String.format("(%s 8 %s)", rl, rr);
+
         assertEquals(String.format("(%s 7 %s)", l, r), tree.toSexp());
+
 
         //            (7)
         //           /   \
@@ -216,6 +218,7 @@ public class TestBPlusTree {
         rr = "((8 (8 8)) (9 (9 9)))";
         l = String.format("(%s 3 %s 6 %s)", ll, lm, lr);
         r = String.format("(%s 8 %s)", rl, rr);
+
         assertEquals(String.format("(%s 7 %s)", l, r), tree.toSexp());
 
         //            (4 7)
@@ -444,6 +447,7 @@ public class TestBPlusTree {
                 for (int i = 0; i < keys.size(); ++i) {
                     assertEquals(Optional.of(rids.get(i)), tree.get(keys.get(i)));
                 }
+                tree.toDot();
 
                 // Test scanAll.
                 assertEquals(sortedRids, indexIteratorToList(tree::scanAll));
